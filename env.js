@@ -5,6 +5,6 @@
  * payment secrets, email API keys, or Telegram bot tokens in this file.
  */
 window.RPE_CONFIG = {
-  SUPABASE_URL: '',
-  SUPABASE_ANON_KEY: '',
+  SUPABASE_URL: 'https://ulekbgnjvwahknnflyjg.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable__QSYn9InV-kCv0CpEBogng_Eq-PUfU8',
 };
