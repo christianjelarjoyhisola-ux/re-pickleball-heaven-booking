@@ -398,6 +398,8 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.settings (key, value)
 VALUES
   ('venue_name',    'R&E PICKLEBALL HAVEN'),
+  ('venue_address', 'Purok 6, Brgy. Kauswagan, Cabadbaran, Philippines, 8605'),
+  ('venue_map_url', 'https://www.bing.com/maps/default.aspx?v=2&pc=FACEBK&mid=8100&where1=Purok%206%2C%20Brgy.%20Kauswagan%2C%20Cabadbaran%2C%20Philippines%2C%208605&FORM=FBKPL1&mkt=en-US'),
   ('open_time',     '6'),
   ('close_time',    '22'),
   ('booking_fee',   '5'),
