@@ -8,17 +8,17 @@
 
 /* ---------- CSS Variables ---------- */
 :root {
-  --green-primary: #143d63;
-  --green-light: #2b6f9f;
-  --green-dark: #0b2744;
-  --dark-bg: #091521;
-  --dark-card: #12283b;
-  --dark-border: #29475f;
-  --dark-text: #f8faf6;
-  --dark-muted: #aec0cf;
-  --dark-input: #0f2234;
-  --accent-yellow: #c9cf43;
-  --accent-red: #c83d26;
+  --green-primary: #8d2fa8;
+  --green-light: #b86ad2;
+  --green-dark: #4f1f5f;
+  --dark-bg: #121619;
+  --dark-card: #1d2328;
+  --dark-border: #384149;
+  --dark-text: #f9f8fb;
+  --dark-muted: #c7bdca;
+  --dark-input: #252c31;
+  --accent-yellow: #b9d45a;
+  --accent-red: #2f6b35;
   --radius: 12px;
   --shadow: 0 8px 32px rgba(0,0,0,0.4);
   --transition: 0.2s ease;
@@ -26,13 +26,13 @@
 
 /* Light mode */
 body.light-mode {
-  --dark-bg: #f4f7f8;
+  --dark-bg: #f6f4f7;
   --dark-card: #ffffff;
-  --dark-border: #d7e0e6;
-  --dark-text: #0f2438;
-  --dark-muted: #657486;
-  --dark-input: #eef3f6;
-  --shadow: 0 8px 32px rgba(20,61,99,0.12);
+  --dark-border: #ddd5e2;
+  --dark-text: #25272b;
+  --dark-muted: #6b6870;
+  --dark-input: #f0eef2;
+  --shadow: 0 8px 32px rgba(79,31,95,0.12);
 }
 
 /* ---------- Reset & Base ---------- */
@@ -93,13 +93,13 @@ h1, h2, h3, h4 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-red), #9f2f1f);
+  background: linear-gradient(135deg, var(--accent-red), #1f4d28);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(200,61,38,0.22);
+  box-shadow: 0 4px 16px rgba(47,107,53,0.24);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(200,61,38,0.28);
+  box-shadow: 0 8px 24px rgba(47,107,53,0.3);
 }
 
 .btn-secondary {

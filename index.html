@@ -10,22 +10,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust:100%; text-size-adjust:100%; touch-action:manipulation; }
 :root {
-  --navy: #143d63; --navy-dark: #0b2744; --court-blue: #0e5a8a;
-  --court-red: #c83d26; --court-red-dark: #9f2f1f; --pickle-lime: #c9cf43;
-  --accent: var(--navy); --accent-dark: var(--navy-dark); --glow: rgba(20,61,99,.18);
+  --navy: #8d2fa8; --navy-dark: #4f1f5f; --court-blue: #4f7d4a;
+  --court-red: #2f6b35; --court-red-dark: #1f4d28; --pickle-lime: #b9d45a;
+  --accent: var(--navy); --accent-dark: var(--navy-dark); --glow: rgba(141,47,168,.2);
   --cta: var(--court-red); --cta-dark: var(--court-red-dark);
-  --ac: 20, 61, 99;
-  --bg: #f4f7f8; --card: #ffffff; --border: #d7e0e6;
-  --text: #0f2438; --muted: #657486; --input: #eef3f6;
-  --dark-text: #f8faf6; --dark-muted: #aec0cf;
-  --red: var(--court-red); --yellow: #b88b24; --yellow-rgb: 184,139,36;
-  --lime: var(--pickle-lime); --lime-rgb: 201,207,67; --lime-ink: #70771e;
-  --slot-selected: #f97316; --slot-selected-dark: #ea580c; --slot-selected-rgb: 249,115,22;
+  --ac: 141, 47, 168;
+  --bg: #f6f4f7; --card: #ffffff; --border: #ddd5e2;
+  --text: #25272b; --muted: #6b6870; --input: #f0eef2;
+  --dark-text: #f9f8fb; --dark-muted: #c7bdca;
+  --red: #b12f3a; --yellow: #9f7a18; --yellow-rgb: 159,122,24;
+  --lime: var(--pickle-lime); --lime-rgb: 185,212,90; --lime-ink: #4f6121;
+  --slot-selected: #8d2fa8; --slot-selected-dark: #68237e; --slot-selected-rgb: 141,47,168;
   --slot-processing: #22c55e; --slot-processing-dark: #16a34a; --slot-processing-rgb: 34,197,94;
   --r-sm: 8px; --r: 12px; --r-lg: 18px; --pill: 999px;
 }
-body.light { --bg:#f4f7f8; --card:#ffffff; --border:#d7e0e6; --text:#0f2438; --muted:#657486; --input:#eef3f6; --dark-text:#f8faf6; --dark-muted:#aec0cf; }
-body.dark { --bg:#091521; --card:#12283b; --border:#29475f; --text:#f8faf6; --muted:#aec0cf; --input:#0f2234; --accent:#7fa9cc; --accent-dark:#143d63; --glow:rgba(127,169,204,.18); --ac:127,169,204; --dark-text:#f8faf6; --dark-muted:#aec0cf; --lime:#dce768; --lime-rgb:220,231,104; --lime-ink:#dce768; }
+body.light { --bg:#f6f4f7; --card:#ffffff; --border:#ddd5e2; --text:#25272b; --muted:#6b6870; --input:#f0eef2; --dark-text:#f9f8fb; --dark-muted:#c7bdca; }
+body.dark { --bg:#121619; --card:#1d2328; --border:#384149; --text:#f9f8fb; --muted:#c7bdca; --input:#252c31; --accent:#b86ad2; --accent-dark:#8d2fa8; --glow:rgba(184,106,210,.2); --ac:184,106,210; --dark-text:#f9f8fb; --dark-muted:#c7bdca; --lime:#cce86a; --lime-rgb:204,232,106; --lime-ink:#cce86a; --cta:#4f8a44; --cta-dark:#2f6b35; }
 body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; transition:background .3s,color .3s; touch-action:manipulation; }
 button, input, select, textarea, label, a, [role="button"], .btn, .cc-slot-btn, .court-tab, .wiz-court-card, .pay-opt, .time-chip {
   touch-action: manipulation;
