@@ -1,4 +1,4 @@
-# Changelog — R&E PICKLEBALL HEAVEN (R&E Pickleball Heaven)
+# Changelog — R&E PICKLEBALL HAVEN (R&E PICKLEBALL HAVEN)
 
 All notable changes to this project are documented here.
 Format: `[YYYY-MM-DD] — Type: Description (files affected)`
@@ -60,7 +60,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 ### Changed
 - **Grouped multi-court booking transactions** - admin booking, dashboard, and payment review views now group related court bookings under one transaction-style summary.
 - **Selected booking summary flow** - moved the selected court/time summary into the sticky booking bar, compacted long time labels, and removed court feature chips from public court cards.
-- **Booking email theme** - updated confirmation and reschedule email styling to use the R&E PICKLEBALL HEAVEN logo and darker orange-accented court branding.
+- **Booking email theme** - updated confirmation and reschedule email styling to use the R&E PICKLEBALL HAVEN logo and darker orange-accented court branding.
 - **Manual import reporting rules** - excluded manual imports from analytics and platform-fee calculations so imported history does not inflate live booking metrics.
 - **Staff payment access** - staff access now targets payment review permissions instead of broader payment settings.
 - **Open Play maintenance blocking** - added support for Open Play maintenance block handling in public availability.
@@ -90,7 +90,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 - **Improved Host prompt contrast** - changed the centered host popup to a dark navy panel with a lime border so it stands apart from the white booking page.
 - **Host prompt modal behavior** - added a dim blurred backdrop, locked page scrolling while the host prompt is visible, and auto-closes it after 10 seconds.
 - **Host session payment verification** - added player join/payment records for host-created Open Play sessions and reused receipt OCR checks for auto-approving valid host-session payments.
-- **Uploaded circular R&E PICKLEBALL HEAVEN logo** - replaced the generated SVG display with the court-provided circular PNG logo and updated public, login, admin, and favicon references.
+- **Uploaded circular R&E PICKLEBALL HAVEN logo** - replaced the generated SVG display with the court-provided circular PNG logo and updated public, login, admin, and favicon references.
 - **Four-column booking slot grid** - public court-card time slots now stay in a cleaner 4-column layout across desktop and mobile breakpoints.
 - **Compact booking fee breakdown** - per-hour booking fees now show the total first, followed by the short formula, for example `₱40.00 (₱10.00/hr × 4 hrs)`.
 - **Plain slot status labels** - processing slots now show `Processing...` without an emoji, and booked slots show `Booked` instead of masked names or `TAKEN`.
@@ -99,7 +99,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 - **Logo edge cleanup** - the new PNG has transparent corners so the logo appears as a true circle instead of a square image with rounded styling.
 - **Restored full public page after label update** - repaired the public `index.html` deployment after a bad redirected verification output briefly replaced the local file.
 
-**Files affected:** `index.html`, `admin.html`, `login.html`, `re-pickleball-heaven-logo.svg`, `re-pickleball-heaven-logo.svg`
+**Files affected:** `index.html`, `admin.html`, `login.html`, `3ddd.jpg`, `3ddd.jpg`
 
 ---
 
@@ -113,7 +113,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 - **Fast browser data cache** - Supabase reads now use short-lived in-flight caching for courts, bookings, settings, blocked dates, and Open Play counts to avoid duplicate requests.
 
 ### Changed
-- **Selected time slot color** - selected public time cards now use the R&E PICKLEBALL HEAVEN lime green from the logo instead of blue, making the active selection easier to identify.
+- **Selected time slot color** - selected public time cards now use the R&E PICKLEBALL HAVEN lime green from the logo instead of blue, making the active selection easier to identify.
 - **Mobile time-slot grid** - public booking time cards use a 3-column mobile layout for easier reading.
 - **Court-card selection behavior** - court cards stay visually neutral while the selected time slot carries the main booking emphasis.
 - **Generic spinner styling** - the shared spinner class now renders as a mini pickleball loader for consistency.
@@ -195,7 +195,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 - **Per-court Open Play capacity** - player limits now count separately per court/day instead of sharing one global count across all courts.
 - **Open Play reservation court filter** - admin Open Play Reservations list can be filtered by court.
 - **Local data mode for testing** - localhost can run against browser-local seeded data with `?localData=1`, including 10 demo courts, without writing to the live Supabase project. `?remoteData=1` switches local browser testing back to live Supabase.
-- **Local promo ad assets** - created promotional ad source and rendered PNG using actual R&E PICKLEBALL HEAVEN booking UI screenshots for marketing to pickleball court owners.
+- **Local promo ad assets** - created promotional ad source and rendered PNG using actual R&E PICKLEBALL HAVEN booking UI screenshots for marketing to pickleball court owners.
 
 ### Changed
 - **Public booking availability** now respects the selected Open Play courts, so non-Open-Play courts remain normally bookable.
@@ -416,8 +416,8 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 ## [2026-06-12] — Rebrand + Color Theme Update
 
 ### Changed
-- Renamed all instances of the legacy venue branding to "R&E PICKLEBALL HEAVEN" across all pages
-- Updated color theme to match R&E PICKLEBALL HEAVEN logo: dark navy background + vivid blue accent
+- Renamed all instances of the legacy venue branding to "R&E PICKLEBALL HAVEN" across all pages
+- Updated color theme to match R&E PICKLEBALL HAVEN logo: dark navy background + vivid blue accent
   - Primary: `#2563eb`, Dark: `#1848c8`, Glow: `rgba(37,99,235,.25)`
   - Background: `#0c1220`, Card: `#111b2d`, Border: `#1e3252`, Input: `#0e1828`
   - Admin light mode green → blue: `#2563eb / #1848c8`, bg `#dbeafe`
@@ -435,7 +435,7 @@ Types: **Added**, **Changed**, **Fixed**, **Removed**, **Security**, **DB**
 This is the baseline snapshot of the project when the changelog was introduced.
 
 #### Pages
-- `index.html` — Main public booking page (R&E PICKLEBALL HEAVEN branding, dark/light mode, court booking form)
+- `index.html` — Main public booking page (R&E PICKLEBALL HAVEN branding, dark/light mode, court booking form)
 - `admin.html` — Admin dashboard with analytics charts (`chart.min.js`), booking management, dark/light theme
 - `login.html` — Admin login page with Supabase auth
 

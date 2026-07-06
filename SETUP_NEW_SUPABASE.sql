@@ -1,5 +1,5 @@
 -- ============================================================
--- R&E PICKLEBALL HEAVEN — COMPLETE DATABASE SETUP
+-- R&E PICKLEBALL HAVEN — COMPLETE DATABASE SETUP
 -- Run this entire script in: Supabase Dashboard → SQL Editor
 -- ============================================================
 
@@ -397,7 +397,7 @@ ON CONFLICT (id) DO NOTHING;
 -- ── 12. SEED DEFAULT SETTINGS ────────────────────────────────
 INSERT INTO public.settings (key, value)
 VALUES
-  ('venue_name',    'R&E PICKLEBALL HEAVEN'),
+  ('venue_name',    'R&E PICKLEBALL HAVEN'),
   ('open_time',     '6'),
   ('close_time',    '22'),
   ('booking_fee',   '5'),

@@ -1,10 +1,10 @@
-# R&E Pickleball Heaven Booking System
+# R&E PICKLEBALL HAVEN Booking System
 
-This repository is the standalone booking system for R&E Pickleball Heaven. It must use its own GitHub repository, Supabase project, Cloudflare Pages project, domain, payment credentials, email sender, Telegram bot/chat, and admin accounts.
+This repository is the standalone booking system for R&E PICKLEBALL HAVEN. It must use its own GitHub repository, Supabase project, Cloudflare Pages project, domain, payment credentials, email sender, Telegram bot/chat, and admin accounts.
 
 ## Setup
 
-1. Create a new Supabase project for R&E Pickleball Heaven.
+1. Create a new Supabase project for R&E PICKLEBALL HAVEN.
 2. Run `SETUP_NEW_SUPABASE.sql` in the Supabase SQL Editor.
 3. Copy `.env.example` to `.env.local` and fill in the R&E Supabase service role, account, email, Telegram, and payment values.
 4. Fill in `env.js` with the R&E Supabase URL and anon key for the browser app.

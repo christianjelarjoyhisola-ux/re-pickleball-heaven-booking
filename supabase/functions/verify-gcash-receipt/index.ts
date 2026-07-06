@@ -353,9 +353,9 @@ function selectedMethodMismatch(provider: PaymentProvider, text: string): boolea
 
 function hasExpectedReceiverName(text: string, expectedName: string): boolean {
   const upper = text.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  const expected = (expectedName || "R&E PICKLEBALL HEAVEN").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  const expected = (expectedName || "R&E PICKLEBALL HAVEN").toUpperCase().replace(/[^A-Z0-9]/g, "");
   if (expected.length >= 3 && upper.includes(expected)) return true;
-  return upper.includes("REPICKLEBALLHEAVEN");
+  return upper.includes("REPICKLEBALLHAVEN");
 }
 
 function extractBdoInvoiceNumber(text: string): string | null {
@@ -423,13 +423,13 @@ function expectedMerchantForProvider(
   if (provider === "bdopay") {
     return {
       number: settings.bdopay_merchant_number || "",
-      name: settings.bdopay_merchant_name || settings.payment_merchant_name || "R&E PICKLEBALL HEAVEN",
+      name: settings.bdopay_merchant_name || settings.payment_merchant_name || "R&E PICKLEBALL HAVEN",
     };
   }
   if (provider === "maya") {
     return {
       number: settings.maya_merchant_number || "",
-      name: settings.maya_merchant_name || settings.payment_merchant_name || "R&E PICKLEBALL HEAVEN",
+      name: settings.maya_merchant_name || settings.payment_merchant_name || "R&E PICKLEBALL HAVEN",
     };
   }
   if (provider === "gotyme") {
@@ -626,7 +626,7 @@ function checkReceiverNumber(text: string, expectedRaw: string): NumberCheck {
   return "unreadable";
 }
 
-// Loose masked-name match (e.g. "CO**TY**D P*CKL*B*LL" vs "R&E PICKLEBALL HEAVEN").
+// Loose masked-name match (e.g. "CO**TY**D P*CKL*B*LL" vs "R&E PICKLEBALL HAVEN").
 function checkReceiverName(text: string, expectedName: string): "match" | "mismatch" | "unreadable" {
   const expected = (expectedName || "").toUpperCase().replace(/[^A-Z]/g, "");
   if (expected.length < 3) return "unreadable";

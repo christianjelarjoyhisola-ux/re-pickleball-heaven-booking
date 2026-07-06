@@ -1,5 +1,5 @@
 /**
- * Public browser runtime configuration for R&E Pickleball Heaven.
+ * Public browser runtime configuration for R&E PICKLEBALL HAVEN.
  *
  * Supabase anon keys are public by design. Never place service-role keys,
  * payment secrets, email API keys, or Telegram bot tokens in this file.

@@ -3,7 +3,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const LOGO_URL = "https://repickleballheaven.com/re-pickleball-heaven-logo.svg";
+const LOGO_URL = "https://repickleballheaven.com/re-pickleball-haven-logo.jpg";
 
 type Payload = {
   bookingRef: string;
@@ -89,7 +89,7 @@ function buildHtml(p: Payload): string {
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="color-scheme" content="dark"/>
 <meta name="supported-color-schemes" content="dark"/>
-<title>Booking Confirmed - R&E PICKLEBALL HEAVEN</title>
+<title>Booking Confirmed - R&E PICKLEBALL HAVEN</title>
 </head>
 <body style="margin:0;padding:0;background:#15171b;background-image:linear-gradient(#15171b,#15171b);font-family:'Segoe UI',Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#15171b;background-image:linear-gradient(#15171b,#15171b);padding:32px 0;">
@@ -97,9 +97,9 @@ function buildHtml(p: Payload): string {
     <table width="560" cellpadding="0" cellspacing="0" style="background:#202428;background-image:linear-gradient(#202428,#202428);border:1px solid #323840;border-radius:14px;overflow:hidden;box-shadow:0 12px 34px rgba(0,0,0,.42);max-width:560px;width:100%;">
 
       <tr><td style="background:#75330f;background-image:linear-gradient(#75330f,#75330f);padding:34px 36px 30px;text-align:center;border-top:6px solid #f59a38;border-bottom:1px solid #8f4518;">
-        <img src="${LOGO_URL}" width="96" height="96" alt="R&E PICKLEBALL HEAVEN logo" style="display:block;width:96px;height:96px;margin:0 auto 14px;border-radius:50%;background:#fff;padding:6px;border:4px solid #0f1720;"/>
-        <div style="font-family:'Bebas Neue',Georgia,serif;font-size:1.6rem;letter-spacing:3px;color:#1b1f24;line-height:1.1;font-weight:900;">R&E PICKLEBALL HEAVEN</div>
-        <div style="font-size:.75rem;color:#2c221b;letter-spacing:2px;text-transform:uppercase;margin-top:4px;font-weight:700;">R&E Pickleball Heaven</div>
+        <img src="${LOGO_URL}" width="96" height="96" alt="R&E PICKLEBALL HAVEN logo" style="display:block;width:96px;height:96px;margin:0 auto 14px;border-radius:50%;background:#fff;padding:6px;border:4px solid #0f1720;"/>
+        <div style="font-family:'Bebas Neue',Georgia,serif;font-size:1.6rem;letter-spacing:3px;color:#1b1f24;line-height:1.1;font-weight:900;">R&E PICKLEBALL HAVEN</div>
+        <div style="font-size:.75rem;color:#2c221b;letter-spacing:2px;text-transform:uppercase;margin-top:4px;font-weight:700;">R&E PICKLEBALL HAVEN</div>
       </td></tr>
 
       <tr><td style="background:#c95a1c;background-image:linear-gradient(#c95a1c,#c95a1c);padding:14px 36px;text-align:center;">
@@ -109,7 +109,7 @@ function buildHtml(p: Payload): string {
       <tr><td style="padding:32px 36px;background:#202428;background-image:linear-gradient(#202428,#202428);">
         <p style="margin:0 0 20px;font-size:1rem;color:#f7fafc;">Hi <strong>${fullName}</strong>,</p>
         <p style="margin:0 0 24px;font-size:.95rem;color:#d7dee8;line-height:1.6;">
-          Great news! R&E PICKLEBALL HEAVEN booking has been <strong style="color:#f49a4a;">confirmed</strong>.
+          Great news! R&E PICKLEBALL HAVEN booking has been <strong style="color:#f49a4a;">confirmed</strong>.
           ${isFullPay ? "Your full payment has been received and your slot is locked in." : "Your downpayment has been received and your slot is locked in."} See you on the court!
         </p>
 
@@ -184,7 +184,7 @@ function buildHtml(p: Payload): string {
       </td></tr>
 
       <tr><td style="background:#1b2025;background-image:linear-gradient(#1b2025,#1b2025);padding:18px 36px;text-align:center;border-top:1px solid #30363d;">
-        <div style="font-size:.75rem;color:#f49a4a;letter-spacing:1px;">R&E PICKLEBALL HEAVEN</div>
+        <div style="font-size:.75rem;color:#f49a4a;letter-spacing:1px;">R&E PICKLEBALL HAVEN</div>
         <div style="font-size:.72rem;color:#7f8ea3;margin-top:4px;">This is an automated confirmation email.</div>
       </td></tr>
 
@@ -211,7 +211,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const fromAddress = Deno.env.get("EMAIL_FROM") || "R&E PICKLEBALL HEAVEN <onboarding@resend.dev>";
+    const fromAddress = Deno.env.get("EMAIL_FROM") || "R&E PICKLEBALL HAVEN <onboarding@resend.dev>";
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -222,7 +222,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         from: fromAddress,
         to: [body.email],
-        subject: `Booking Confirmed - ${body.bookingRef} | R&E PICKLEBALL HEAVEN`,
+        subject: `Booking Confirmed - ${body.bookingRef} | R&E PICKLEBALL HAVEN`,
         html: buildHtml(body),
       }),
     });

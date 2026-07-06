@@ -1,5 +1,5 @@
 /**
- * Browser runtime configuration for R&E Pickleball Heaven.
+ * Browser runtime configuration for R&E PICKLEBALL HAVEN.
  *
  * Copy this file to env.js and fill in values from the new R&E Supabase project.
  * Keep env.js out of Git if you do not want public deployment credentials in source.

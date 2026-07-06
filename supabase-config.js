@@ -1252,7 +1252,7 @@ window.DB = {
     const n = i + 1;
     return {
       id: `c${n}`,
-      name: n === 1 ? 'R&E PICKLEBALL HEAVEN' : `Court ${n}`,
+      name: n === 1 ? 'R&E PICKLEBALL HAVEN' : `Court ${n}`,
       desc: 'Outdoor',
       rate: n <= 5 ? 60 : 90,
       blocked: false,
@@ -1837,7 +1837,7 @@ window.DB = {
     return readDb();
   };
 
-  console.info('[R&E PICKLEBALL HEAVEN] Local data mode enabled. Supabase writes are bypassed in this browser.');
+  console.info('[R&E PICKLEBALL HAVEN] Local data mode enabled. Supabase writes are bypassed in this browser.');
 })();
 
 window.Auth = {

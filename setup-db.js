@@ -1,5 +1,5 @@
 // Run: node setup-db.js
-// Sets up the full R&E PICKLEBALL HEAVEN schema in the new Supabase project
+// Sets up the full R&E PICKLEBALL HAVEN schema in the new Supabase project
 
 const fs = require('fs');
 
@@ -278,7 +278,7 @@ async function run() {
   console.log(courtErr ? `  ✗ seed courts: ${courtErr.message}` : '  ✓ seed courts');
 
   const { error: settErr } = await sb.from('settings').upsert([
-    { key: 'venue_name',    value: 'R&E PICKLEBALL HEAVEN' },
+    { key: 'venue_name',    value: 'R&E PICKLEBALL HAVEN' },
     { key: 'open_time',     value: '6' },
     { key: 'close_time',    value: '22' },
     { key: 'booking_fee',   value: '5' },
