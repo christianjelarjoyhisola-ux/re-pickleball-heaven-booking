@@ -1,0 +1,15 @@
+{
+  "name": "re-pickleball-heaven-booking",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node tools/verify-brand-isolation.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.108.1",
+    "pg": "^8.21.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.100.0"
+  }
+}
