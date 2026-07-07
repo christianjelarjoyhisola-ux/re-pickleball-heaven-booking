@@ -2815,8 +2815,8 @@ tr:hover td { background: var(--bg2); }
       </p>
     </div>
     <div class="m-foot">
-      <button class="btn btn-d" onclick="rejectPayment()">❌ Not Received</button>
-      <button class="btn btn-p" onclick="verifyAndConfirm()">✅ Received — Confirm</button>
+      <button class="btn btn-d" id="vmRejectBtn" onclick="rejectPayment()">❌ Not Received</button>
+      <button class="btn btn-p" id="vmConfirmBtn" onclick="verifyAndConfirm()">✅ Received — Confirm</button>
     </div>
   </div>
 </div>
@@ -4184,11 +4184,11 @@ function receivedAccountLabel(b) {
 }
 
 function bookingReviewStatus(b) {
+  if (b.paymentStatus === 'paid' || b.paymentStatus === 'downpayment_paid') return 'paid';
   if (b.receiptStatus === 'manual_review') return 'manual_review';
   if (b.receiptStatus === 'rejected' || b.paymentStatus === 'rejected') return 'rejected';
   if (b.receiptStatus === 'auto_approved') return 'auto_approved';
   if (b.paymentStatus === 'for_verification' || b.status === 'verifying') return 'pending';
-  if (b.paymentStatus === 'paid' || b.paymentStatus === 'downpayment_paid') return 'paid';
   if (isDigitalPayment(b.paymentMethod) && b.gcashRef && b.status === 'pending') return 'pending';
   return b.paymentStatus || 'unpaid';
 }
@@ -4223,6 +4223,9 @@ function paymentReviewWhenText(v) {
 
 function paymentReviewAction(item) {
   if (item.type === 'booking') {
+    if (item.status === 'paid' || item.status === 'auto_approved') {
+      return '<span style="color:var(--muted);font-size:.78rem">No action</span>';
+    }
     return `<button class="btn btn-sm" style="background:rgba(200,160,96,.15);color:var(--yellow);border:1px solid rgba(200,160,96,.35);font-weight:700" onclick="openVerifyModal('${jsArg(item.id)}')">Review</button>`;
   }
   if (item.type === 'open_play' && item.status !== 'paid') {
@@ -4767,11 +4770,19 @@ async function vmPopulateReceipt(b){
 async function verifyAndConfirm() {
   const ref = $('verifyModal').dataset.ref;
   if (!ref) return;
+  const confirmBtn = $('vmConfirmBtn');
+  const rejectBtn = $('vmRejectBtn');
   try {
+    if (confirmBtn) { confirmBtn.disabled = true; confirmBtn.textContent = 'Confirming...'; }
+    if (rejectBtn) rejectBtn.disabled = true;
     const bkForPay = await getBookingGroupByRef(ref);
     const isFullyPaid = bkForPay && bkForPay.downpayment >= bkForPay.total;
     const verifiedPayStatus = isFullyPaid ? 'paid' : 'downpayment_paid';
-    await updateBookingGroupByRef(ref, { status: 'confirmed', paymentStatus: verifiedPayStatus });
+    await updateBookingGroupByRef(ref, {
+      status: 'confirmed',
+      paymentStatus: verifiedPayStatus,
+      paidAt: new Date().toISOString(),
+    });
 
     closeModal('verifyModal');
     toast('Payment verified & booking confirmed!');
@@ -4787,7 +4798,11 @@ async function verifyAndConfirm() {
       ]);
     }).catch(() => {});
   } catch(e) {
-    toast('Failed to confirm booking.', 'err');
+    console.error('verifyAndConfirm failed:', e);
+    toast(`Failed to confirm booking: ${e?.message || e}`, 'err');
+  } finally {
+    if (confirmBtn) { confirmBtn.disabled = false; confirmBtn.textContent = '✅ Received — Confirm'; }
+    if (rejectBtn) rejectBtn.disabled = false;
   }
 }
 
@@ -4807,7 +4822,11 @@ async function rejectPayment() {
   const ref = $('verifyModal').dataset.ref;
   if (!ref) return;
   if (!confirm(`Cancel booking ${ref}? This cannot be undone.`)) return;
+  const confirmBtn = $('vmConfirmBtn');
+  const rejectBtn = $('vmRejectBtn');
   try {
+    if (rejectBtn) { rejectBtn.disabled = true; rejectBtn.textContent = 'Cancelling...'; }
+    if (confirmBtn) confirmBtn.disabled = true;
     await updateBookingGroupByRef(ref, { status: 'cancelled', paymentStatus: 'rejected' });
     closeModal('verifyModal');
     toast('Booking cancelled — payment not verified.', 'err');
@@ -4816,7 +4835,11 @@ async function rejectPayment() {
     renderDash();
     notifyBookingUpdateSafe(ref, 'payment_rejected', 'Payment marked not received by admin.');
   } catch(e) {
-    toast('Failed to cancel booking.', 'err');
+    console.error('rejectPayment failed:', e);
+    toast(`Failed to cancel booking: ${e?.message || e}`, 'err');
+  } finally {
+    if (rejectBtn) { rejectBtn.disabled = false; rejectBtn.textContent = '❌ Not Received'; }
+    if (confirmBtn) confirmBtn.disabled = false;
   }
 }
 
