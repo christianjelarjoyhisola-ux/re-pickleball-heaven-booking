@@ -3691,7 +3691,7 @@ function clearHostSessionReceipt() {
 
 async function verifyHostSessionReceipt(ref, method, inlineData) {
   const st = $('hsReceiptStatus');
-  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = 'Verifying your receipt...'; }
+  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = 'Uploading receipt for manual review...'; }
   const dataUrl = await _fileToBase64(_hostSessionReceiptFile);
   const res = await DB.verifyGcashReceipt({
     bookingRef: ref,
@@ -7028,7 +7028,7 @@ async function submitBooking(e) {
 }
 
 /* =============================================
-   RECEIPT UPLOAD + AUTO-VERIFICATION
+   RECEIPT UPLOAD + MANUAL VERIFICATION
    ============================================= */
 let _receiptFile = null;
 
@@ -7067,7 +7067,7 @@ function _fileToBase64(file) {
 
 async function verifyUploadedReceipt(bookingRef, method, inlineData = null) {
   const st = $('bReceiptStatus');
-  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = '🔎 Verifying your receipt…'; }
+  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = 'Uploading receipt for manual review...'; }
   try {
     const dataUrl = await _fileToBase64(_receiptFile);
     const payload = {
@@ -7898,7 +7898,7 @@ function clearOpReceipt() {
 
 async function verifyOpReceipt(ref, method, inlineData) {
   const st = $('opReceiptStatus');
-  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = '🔎 Verifying your receipt…'; }
+  if (st) { st.style.display = ''; st.style.background = 'rgba(74,154,220,.1)'; st.style.color = '#4b5563'; st.textContent = 'Uploading receipt for manual review...'; }
   try {
     const dataUrl = await _fileToBase64(_opReceiptFile);
     const res = await DB.verifyGcashReceipt({
@@ -8004,8 +8004,8 @@ async function submitOpenPlay() {
       $('opModalFt').innerHTML = `<button class="btn btn-g" style="width:100%;justify-content:center" onclick="closeOpModal()">Got it</button>`;
       return;
     }
-    // Auto-verify the uploaded receipt BEFORE saving (digital payments only).
-    // Inline bookingData makes the edge function verify-only (no bookings write).
+    // Upload the receipt BEFORE saving (digital payments only).
+    // Inline bookingData lets the edge function store evidence without writing bookings.
     let regPayStatus = 'pending';
     let receiptResult = null;
     if (needsRef && _opReceiptFile) {

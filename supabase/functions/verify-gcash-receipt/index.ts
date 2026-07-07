@@ -956,6 +956,63 @@ Deno.serve(async (req) => {
     });
     if (upErr) console.error("receipt upload failed:", errMsg(upErr));
 
+    const manualReviewOnly = (Deno.env.get("DISABLE_AUTO_OCR") || "").trim() === "1";
+    if (manualReviewOnly) {
+      const nowIso = new Date().toISOString();
+      const manualFlags = ["MANUAL_VERIFICATION_REQUIRED"];
+      const extracted = {
+        provider,
+        expectedAmount,
+        expectedReceiverNumber: provider === "bdopay" || provider === "maya" ? null : expectedNumber || null,
+        expectedReceiverName: expectedName || null,
+        autoOcrDisabled: true,
+      };
+      const metadataUpdate: Record<string, unknown> = {
+        receipt_image_url: objectPath,
+        receipt_image_hash: imageHash,
+        receipt_phash: phash,
+        receipt_status: "manual_review",
+        receipt_flags: manualFlags,
+        receipt_extracted: extracted,
+        receipt_confidence: 0,
+        receipt_verified_at: nowIso,
+      };
+
+      if (!inlineBookingData) {
+        await bookingUpdateQuery(db, booking, {
+          payment_status: "for_verification",
+          status: booking.status === "completed" || booking.status === "cancelled" ? booking.status : "pending",
+        });
+        const { error: mErr } = await bookingUpdateQuery(db, booking, metadataUpdate);
+        if (mErr) console.error("manual-review receipt metadata update failed:", errMsg(mErr));
+      }
+
+      await db.from("receipt_verifications").insert({
+        booking_ref: bookingRef,
+        result: "manual_review",
+        flags: manualFlags,
+        extracted,
+        confidence: 0,
+        image_hash: imageHash,
+        phash,
+        raw_ocr_text: null,
+      });
+
+      return json({
+        ok: true,
+        status: "manual_review",
+        publicReason: "Receipt uploaded - the owner will verify your payment shortly.",
+        message: "Receipt stored for manual payment verification.",
+        flags: manualFlags,
+        extracted,
+        confidence: 0,
+        receiptImageUrl: objectPath,
+        receiptImageHash: imageHash,
+        receiptPhash: phash,
+        receiptVerifiedAt: nowIso,
+      });
+    }
+
     const flags: string[] = [];
 
     // Do not flag duplicate-looking images. GCash/BDO Pay/Maya receipt screens
