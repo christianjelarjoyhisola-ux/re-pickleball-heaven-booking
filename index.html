@@ -73,6 +73,7 @@ body.dark .nav { background:rgba(9,21,33,.94); }
 }
 .nav-headline .hl { color:var(--accent); }
 .brand-motto {
+  display:none;
   font-family:'Outfit',sans-serif;
   font-style:italic;
   font-weight:700;
@@ -103,7 +104,7 @@ body.dark .nav { background:rgba(9,21,33,.94); }
   .logo-tx .logo-location { font-size:.55rem; letter-spacing:.15px; max-width:185px; }
   .nav-r { gap:8px; }
   .sw-wrap { gap:5px; font-size:.75rem; }
-  .motto-mobile { display:block; }
+  .motto-mobile { display:none; }
 }
 /* switch */
 .sw-wrap { display:flex; align-items:center; gap:7px; font-size:.85rem; color:var(--muted); }
@@ -2884,13 +2885,6 @@ body.light #splashScreen { background: #071320; }
   <div class="sec-hd">
     <h2>🏟️ SELECT A COURT</h2>
     <p>Tap an Open Play session or choose any available court hours, then continue.</p>
-  </div>
-  <div class="find-time-entry">
-    <div>
-      <strong>Find an available time</strong>
-      <span>Search all courts by date and duration.</span>
-    </div>
-    <button class="btn btn-p btn-sm" type="button" onclick="openFindTimeModal()">Search</button>
   </div>
   <div class="court-tabs-hint">👇 Tap a court to view available times 👇</div>
   <div class="shared-date-entry">
