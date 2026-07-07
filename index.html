@@ -2255,9 +2255,9 @@ body.light #splashScreen { background: #071320; }
 /* R&E nature-first splash variant */
 #splashScreen {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  align-items: stretch;
-  justify-content: stretch;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-content: center;
   padding: max(24px, env(safe-area-inset-top)) 22px max(24px, env(safe-area-inset-bottom));
 }
 #splashScreen::before {
@@ -2281,17 +2281,13 @@ body.light #splashScreen { background: #071320; }
 .sp-top,
 .sp-content,
 .sp-bottom { position: relative; z-index: 10; }
-.sp-top {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  width: min(100%, 1120px); margin: 0 auto;
-  animation: spFadeDown .58s ease .08s both;
-}
+.sp-top { display: none; }
 .sp-mark { display: flex; align-items: center; gap: 12px; min-width: 0; }
 #splashScreen .sp-logo-img {
-  width: 56px; height: 56px; margin: 0; flex: 0 0 auto;
+  width: 96px; height: 96px; margin: 0 auto 10px; flex: 0 0 auto;
   border-color: rgba(255,255,255,.78);
-  box-shadow: 0 14px 34px rgba(0,0,0,.38);
-  animation: none;
+  box-shadow: 0 0 34px rgba(214,239,104,.18), 0 16px 48px rgba(0,0,0,.62);
+  animation: spDropIn .75s cubic-bezier(.34,1.56,.64,1) .08s both;
 }
 .sp-mark-text {
   font-family: 'Bebas Neue', sans-serif;
@@ -2313,7 +2309,7 @@ body.light #splashScreen { background: #071320; }
 #splashScreen .sp-content {
   align-self: center;
   width: min(100%, 1120px); margin: 0 auto; padding: 0;
-  display: grid; gap: 18px; align-items: center; text-align: left;
+  display: grid; gap: 16px; align-items: center; justify-items: center; text-align: center;
   text-shadow: 0 2px 24px rgba(0,0,0,.72);
 }
 .sp-kicker {
@@ -2327,15 +2323,15 @@ body.light #splashScreen { background: #071320; }
   letter-spacing: 1.2px;
   text-transform: uppercase;
   box-shadow: 0 14px 36px rgba(0,0,0,.28);
-  animation: spFadeUp .55s ease .18s both;
+  animation: spFadeUp .55s ease .48s both;
 }
 .sp-headline {
   font-family: 'Bebas Neue', sans-serif;
-  max-width: 760px;
-  font-size: clamp(3.1rem, 10vw, 7.2rem);
-  letter-spacing: 4px; color: #f7fbff; line-height: .9;
+  max-width: min(900px, 92vw);
+  font-size: clamp(2.75rem, 8vw, 5.6rem);
+  letter-spacing: clamp(3px, .9vw, 8px); color: #f7fbff; line-height: .95;
   text-shadow: 0 4px 40px rgba(0,0,0,.82);
-  animation: spFadeUp .62s ease .28s both;
+  animation: spFadeUp .62s ease .24s both;
 }
 #splashScreen .sp-sub {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -2346,7 +2342,7 @@ body.light #splashScreen { background: #071320; }
   color: rgba(246,251,238,.88);
   max-width: 520px;
   margin: 0;
-  animation: spFadeUp .62s ease .40s both;
+  animation: spFadeUp .62s ease .36s both;
 }
 #splashScreen .sp-sub em {
   display: block;
@@ -2356,8 +2352,8 @@ body.light #splashScreen { background: #071320; }
   letter-spacing: 1.2px;
 }
 .sp-cta-row {
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  animation: spFadeUp .62s ease .52s both;
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  animation: spFadeUp .62s ease .60s both;
 }
 .sp-book-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -2377,12 +2373,13 @@ body.light #splashScreen { background: #071320; }
   color: rgba(246,251,238,.74);
   font-size: .86rem;
   letter-spacing: .7px;
+  width: 100%;
 }
 #splashScreen .sp-bottom {
   position: relative; left: auto; right: auto; bottom: auto;
   width: min(100%, 1120px); margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  text-align: left;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  text-align: center;
   color: rgba(246,251,238,.76);
   font-size: .78rem; letter-spacing: 1.3px; text-transform: uppercase;
   animation: spFadeUp .55s ease .64s both;
@@ -2390,13 +2387,7 @@ body.light #splashScreen { background: #071320; }
 }
 .sp-address { min-width: 0; overflow-wrap: anywhere; }
 .sp-scroll-cue {
-  width: 38px; height: 38px; border-radius: 999px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.24);
-  color: #ffcf66;
-  font-size: 1.1rem;
-  flex: 0 0 auto;
+  display: none;
 }
 @keyframes spFadeDown {
   from { opacity: 0; transform: translateY(-16px); }
@@ -2410,17 +2401,16 @@ body.light #splashScreen { background: #071320; }
       radial-gradient(circle at 78% 18%, rgba(255,176,67,.18), transparent 28%),
       linear-gradient(180deg, rgba(4,24,17,.58) 0%, rgba(5,18,29,.30) 34%, rgba(15,8,24,.48) 64%, rgba(5,13,21,.90) 100%);
   }
-  .sp-top { align-items: flex-start; }
-  #splashScreen .sp-logo-img { width: 48px; height: 48px; }
+  #splashScreen .sp-logo-img { width: 82px; height: 82px; margin-bottom: 6px; }
   .sp-mark-text { font-size: 1rem; letter-spacing: 1.7px; }
   .sp-top-chip { display: none; }
-  #splashScreen .sp-content { gap: 15px; }
+  #splashScreen .sp-content { gap: 13px; }
   .sp-kicker { font-size: .62rem; padding: 7px 10px; }
-  .sp-headline { font-size: clamp(3rem, 17vw, 4.5rem); letter-spacing: 2px; max-width: 340px; }
+  .sp-headline { font-size: clamp(2.55rem, 14vw, 4.15rem); letter-spacing: 2.5px; max-width: 340px; }
   #splashScreen .sp-sub { font-size: .95rem; max-width: 310px; }
   .sp-book-btn { width: min(100%, 260px); min-height: 54px; font-size: 1.35rem; }
   .sp-cta-note { width: 100%; font-size: .78rem; }
-  #splashScreen .sp-bottom { font-size: .62rem; letter-spacing: .8px; align-items: flex-end; }
+  #splashScreen .sp-bottom { font-size: .62rem; letter-spacing: .8px; align-items: center; }
   .sp-scroll-cue { width: 34px; height: 34px; }
 }
 
@@ -2759,21 +2749,14 @@ body.light #splashScreen { background: #071320; }
   <div class="sp-ring"></div>
   <div class="sp-ring"></div>
 
-  <div class="sp-top">
-    <div class="sp-mark">
-      <img class="sp-logo-img" src="re-pickleball-haven-logo.jpg" alt="R&E PICKLEBALL HAVEN Logo" />
-      <div class="sp-mark-text">R&E PICKLEBALL HAVEN</div>
-    </div>
-    <div class="sp-top-chip">Outdoor Court</div>
-  </div>
-
   <div class="sp-content">
-    <div class="sp-kicker">Nature, shade, and purple courts</div>
-    <div class="sp-headline">Play Under The Trees</div>
+    <img class="sp-logo-img" src="re-pickleball-haven-logo.jpg" alt="R&E PICKLEBALL HAVEN Logo" />
+    <div class="sp-headline">R&E PICKLEBALL HAVEN</div>
     <div class="sp-sub">
       <em>A Haven of Nature and Play</em>
       Reserve your R&E court slot in a calm outdoor setting.
     </div>
+    <div class="sp-kicker">Play Under The Trees</div>
     <div class="sp-cta-row">
       <div class="sp-book-btn" aria-hidden="true"><span>Book a Court</span></div>
       <div class="sp-cta-note">Tap anywhere to start booking</div>
