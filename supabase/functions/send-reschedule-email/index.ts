@@ -3,7 +3,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const LOGO_URL = "https://repickleballheaven.com/re-pickleball-haven-logo.jpg";
+const LOGO_URL = "https://re-pickleball-heaven-booking.pages.dev/re-pickleball-haven-logo.jpg";
 
 type Payload = {
   bookingRef: string;

@@ -4244,9 +4244,9 @@ let paymentReceiverSettings = {
   gotyme: { number: '', name: 'R&E PICKLEBALL HAVEN', qrImage: '' },
   pnb: { number: '', name: 'R&E PICKLEBALL HAVEN', qrImage: '' },
 };
-let paymentMethods = { cash: true, gcash: true, bdopay: true, maya: true, gotyme: true, pnb: true };
+let paymentMethods = { cash: true, gcash: false, bdopay: false, maya: false, gotyme: false, pnb: false };
 const DIGITAL_PAYMENT_METHODS = ['gcash', 'bdopay', 'maya', 'gotyme', 'pnb'];
-const ALL_PAYMENT_METHODS = [...DIGITAL_PAYMENT_METHODS, 'cash'];
+const ALL_PAYMENT_METHODS = ['cash', ...DIGITAL_PAYMENT_METHODS];
 
 function isDigitalPayMethod(method) {
   return DIGITAL_PAYMENT_METHODS.includes(String(method || '').toLowerCase());
@@ -4613,11 +4613,11 @@ function applyPaymentSettings(settings) {
   });
 
   paymentMethods.cash = settings.payment_method_cash !== '0';
-  paymentMethods.gcash = settings.payment_method_gcash !== '0';
-  paymentMethods.bdopay = settings.payment_method_bdopay !== '0';
-  paymentMethods.maya = settings.payment_method_maya !== '0';
-  paymentMethods.gotyme = settings.payment_method_gotyme !== '0';
-  paymentMethods.pnb = settings.payment_method_pnb !== '0';
+  paymentMethods.gcash = settings.payment_method_gcash === '1';
+  paymentMethods.bdopay = settings.payment_method_bdopay === '1';
+  paymentMethods.maya = settings.payment_method_maya === '1';
+  paymentMethods.gotyme = settings.payment_method_gotyme === '1';
+  paymentMethods.pnb = settings.payment_method_pnb === '1';
   paymentAcceptanceMode = settings.payment_acceptance_mode || 'both';
 
   if ($('gcMerchantNumber')) $('gcMerchantNumber').textContent = gcashSettings.merchantNumber;

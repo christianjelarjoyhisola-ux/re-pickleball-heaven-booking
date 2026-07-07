@@ -403,7 +403,13 @@ VALUES
   ('open_time',     '6'),
   ('close_time',    '22'),
   ('booking_fee',   '5'),
-  ('open_play_fee', '100')
+  ('open_play_fee', '100'),
+  ('payment_method_cash', '1'),
+  ('payment_method_gcash', '0'),
+  ('payment_method_bdopay', '0'),
+  ('payment_method_maya', '0'),
+  ('payment_method_gotyme', '0'),
+  ('payment_method_pnb', '0')
 ON CONFLICT (key) DO NOTHING;
 
 
