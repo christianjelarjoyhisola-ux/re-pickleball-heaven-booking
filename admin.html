@@ -4669,11 +4669,39 @@ async function updatePaymentStatus(ref, status) {
   renderDash();
 }
 
+/**
+ * Converts provider-specific email errors into concise staff-facing messages.
+ * @param {unknown} error Raw error returned by an email Edge Function.
+ * @returns {string} Friendly message suitable for a toast notification.
+ */
+function friendlyEmailError(error) {
+  const message = String(error?.message || error || 'unknown error');
+  const lower = message.toLowerCase();
+  if (lower.includes('testing emails') || lower.includes('verify a domain') || lower.includes('resend error 403')) {
+    return 'Email not sent: Resend is still in testing mode. Verify a Resend sending domain before emailing customers.';
+  }
+  if (lower.includes('resend_api_key') || lower.includes('resend api key')) {
+    return 'Email not sent: Resend is not configured yet.';
+  }
+  const compact = message.replace(/\s+/g, ' ').trim();
+  return `Email not sent: ${compact.slice(0, 180)}${compact.length > 180 ? '...' : ''}`;
+}
+
+/**
+ * Sends a booking confirmation email without treating delivery failure as a booking failure.
+ * @param {object} bk Booking or booking group record.
+ * @param {string} successText Toast text to show when the email is delivered.
+ * @returns {Promise<object|undefined>} Email send result when attempted.
+ */
 async function sendBookingConfirmationNotice(bk, successText = 'Confirmation email sent to customer!') {
   if (!bk?.email) return;
   const res = await DB.sendConfirmationEmail(bk, { allowFailure: true });
   if (res?.ok) toast(successText);
-  else if (!res?.skipped) toast(`Booking saved, but email failed: ${res?.error || 'unknown error'}`, 'err');
+  else if (!res?.skipped) {
+    console.warn('Booking confirmation email failed:', res?.error || res);
+    toast(friendlyEmailError(res?.error), 'inf');
+  }
+  return res;
 }
 
 async function notifyBookingUpdateSafe(bookingOrRef, event, note = '') {
@@ -5736,7 +5764,10 @@ async function saveReschedule() {
       await Promise.all([
         bk.email ? DB.sendRescheduleEmail(payload, { allowFailure: true }).then(j => {
           if (j?.ok) toast('Reschedule email sent to customer!');
-          else if (!j?.skipped) toast(`Booking rescheduled, but email failed: ${j?.error || 'unknown error'}`, 'err');
+          else if (!j?.skipped) {
+            console.warn('Reschedule email failed:', j?.error || j);
+            toast(friendlyEmailError(j?.error), 'inf');
+          }
         }).catch(() => {}) : Promise.resolve(),
         notifyBookingUpdateSafe(bk, 'booking_rescheduled', note || `Moved from ${oldDate} ${oldStartTime}-${oldEndTime} to ${newDate} ${newStartTime}-${newEndTime}`),
       ]);
